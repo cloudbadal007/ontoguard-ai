@@ -1,0 +1,42 @@
+# OntoGuard MCP Server Configuration
+# 
+# This configuration file is used by the MCP integration example.
+# It defines the ontology path and server settings.
+
+# Path to the OWL ontology file
+# Can be absolute or relative to this config file
+ontology_path: "examples/ontologies/ecommerce.owl"
+
+# Logging configuration
+# Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_level: INFO
+
+# Whether to pre-initialize and cache the validator
+# When true, the validator is loaded at server startup (faster first request)
+# When false, the validator is loaded on first use (lazy loading, saves memory)
+cache_validations: true
+
+# MCP Server Settings (for when running as standalone server)
+# These settings are used if you run the server with: python -m ontoguard.mcp_server
+server:
+  name: "OntoGuard MCP Server"
+  version: "0.1.0"
+  description: "Semantic firewall for AI agents using OWL ontologies"
+
+# Transport settings (for HTTP/SSE transports)
+transport:
+  type: "stdio"  # Options: stdio, http, sse, streamable-http
+  host: "127.0.0.1"
+  port: 8000
+
+# Example configurations for different ontologies:
+#
+# For healthcare ontology:
+# ontology_path: "examples/ontologies/healthcare.owl"
+# log_level: INFO
+# cache_validations: true
+#
+# For finance ontology:
+# ontology_path: "examples/ontologies/finance.owl"
+# log_level: WARNING
+# cache_validations: true

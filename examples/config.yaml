@@ -1,0 +1,30 @@
+# OntoGuard MCP Server Configuration
+# 
+# This configuration file defines settings for the OntoGuard MCP server.
+# Set the ONTOGUARD_CONFIG environment variable to point to this file, or
+# place it in the current working directory as config.yaml
+
+# Path to the OWL ontology file
+# Can be absolute or relative to this config file
+ontology_path: "examples/ontologies/ecommerce.owl"
+
+# Logging configuration
+# Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_level: INFO
+
+# Whether to pre-initialize and cache the validator
+# When true, the validator is loaded at server startup
+# When false, the validator is loaded on first use (lazy loading)
+cache_validations: true
+
+# Example configurations for different ontologies:
+#
+# For healthcare ontology:
+# ontology_path: "examples/ontologies/healthcare.owl"
+# log_level: INFO
+# cache_validations: true
+#
+# For finance ontology:
+# ontology_path: "examples/ontologies/finance.owl"
+# log_level: WARNING
+# cache_validations: true
