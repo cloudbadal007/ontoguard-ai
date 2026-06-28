@@ -1,0 +1,16 @@
+@prefix :     <http://ontoarc.ai/examples/agent_as_readonly#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix onto: <http://ontoarc.ai/ontology/roles#> .
+
+<http://ontoarc.ai/examples/agent_as_readonly> rdfs:comment "This file is a deliberate violation for test purposes." .
+
+:ConfusedRole a onto:OccupationalPost , onto:AccessRole ;
+    rdfs:label "DoctorReadOnly" ;
+    rdfs:comment "VIOLATION: a single node must not be both an OccupationalPost and an AccessRole." .
+
+:CareBot a foaf:Agent ;
+    foaf:name "CareBot" ;
+    onto:hasSystemRole :ConfusedRole ;
+    rdfs:comment "AI agent incorrectly assigned a collapsed role that mixes occupational post with system access permissions." .

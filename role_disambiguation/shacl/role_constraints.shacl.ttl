@@ -1,0 +1,57 @@
+# These shapes enforce Patrick Audley's three-continuity separation:
+# provenance/authority, durable-subject identity, and process continuity
+# are modelled as distinct constructs, never collapsed.
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix onto: <http://ontoarc.ai/ontology/roles#> .
+
+# ---------------------------------------------------------------------------
+# Shape 1 — AccessRole must not overlap OccupationalPost or ActorGuise
+# ---------------------------------------------------------------------------
+
+onto:AccessRoleShape a sh:NodeShape ;
+    rdfs:label "Access Role Shape" ;
+    sh:targetClass onto:AccessRole ;
+    sh:not [
+        sh:or (
+            [ sh:class onto:OccupationalPost ]
+            [ sh:class onto:ActorGuise ]
+        )
+    ] ;
+    sh:message "An AccessRole cannot simultaneously be an OccupationalPost or ActorGuise. These are separate constructs." ;
+    sh:severity sh:Violation .
+
+# ---------------------------------------------------------------------------
+# Shape 2 — Person occupational post and system-role constraints
+# ---------------------------------------------------------------------------
+
+onto:PersonRoleShape a sh:NodeShape ;
+    rdfs:label "Person Role Shape" ;
+    sh:targetClass foaf:Person ;
+    sh:property [
+        sh:path onto:holdsPost ;
+        sh:maxCount 1 ;
+        sh:severity sh:Violation ;
+    ] ;
+    sh:property [
+        sh:path onto:hasSystemRole ;
+        sh:class onto:AccessRole ;
+        sh:message "A Person's system role must be an AccessRole, not an OccupationalPost." ;
+        sh:severity sh:Violation ;
+    ] .
+
+# ---------------------------------------------------------------------------
+# Shape 3 — ActorGuise must not overlap AccessRole
+# ---------------------------------------------------------------------------
+
+onto:GuiseSeparationShape a sh:NodeShape ;
+    rdfs:label "Guise Separation Shape" ;
+    sh:targetClass onto:ActorGuise ;
+    sh:not [
+        sh:class onto:AccessRole
+    ] ;
+    sh:message "An ActorGuise (e.g. Jim acting as Doctor in encounter E1) must not be confused with a system AccessRole." ;
+    sh:severity sh:Violation .

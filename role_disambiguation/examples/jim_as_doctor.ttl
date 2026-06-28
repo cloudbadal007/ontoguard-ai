@@ -1,0 +1,49 @@
+@prefix :     <http://ontoarc.ai/examples/jim_as_doctor#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix onto: <http://ontoarc.ai/ontology/roles#> .
+
+:Jim a foaf:Person ;
+    foaf:name "Jim" ;
+    onto:holdsPost onto:DoctorPost ;
+    onto:hasSystemRole onto:ReadOnlyUser ;
+    onto:actsInGuise :EncounterGuise_E1 .
+
+:EncounterGuise_E1 a onto:ActorGuise ;
+    rdfs:label "Jim as Doctor in encounter E1" .
+
+[
+    rdf:subject :Jim ;
+    rdf:predicate rdf:type ;
+    rdf:object foaf:Person ;
+    rdfs:comment "Durable subject identity: Jim is a person, distinct from any occupational post, system permission, or encounter guise."
+] .
+
+[
+    rdf:subject :Jim ;
+    rdf:predicate onto:holdsPost ;
+    rdf:object onto:DoctorPost ;
+    rdfs:comment "OccupationalPost — his job in the organisation; a durable position, not a system permission proxy or a single-encounter guise."
+] .
+
+[
+    rdf:subject :Jim ;
+    rdf:predicate onto:hasSystemRole ;
+    rdf:object onto:ReadOnlyUser ;
+    rdfs:comment "AccessRole — his system-level permission proxy; grants platform access only, not clinical authority or encounter context."
+] .
+
+[
+    rdf:subject :EncounterGuise_E1 ;
+    rdf:predicate rdf:type ;
+    rdf:object onto:ActorGuise ;
+    rdfs:comment "ActorGuise — Jim acting as Doctor in encounter E1 specifically; scoped to one interaction, not his job title or login permissions."
+] .
+
+[
+    rdf:subject :Jim ;
+    rdf:predicate onto:actsInGuise ;
+    rdf:object :EncounterGuise_E1 ;
+    rdfs:comment "Process continuity: links the person to the encounter-specific guise in which he is acting for this interaction only."
+] .

@@ -1,0 +1,75 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix onto: <http://ontoarc.ai/ontology/roles#> .
+
+# ---------------------------------------------------------------------------
+# Ontology metadata
+# ---------------------------------------------------------------------------
+
+<http://ontoarc.ai/ontology/roles> a owl:Ontology ;
+    rdfs:label "OntoGuard Role Disambiguation" ;
+    rdfs:comment "Distinguishes system access roles, occupational posts, and actor guises as disjoint subclasses of Role." ;
+    owl:versionInfo "0.1.0" .
+
+# ---------------------------------------------------------------------------
+# Classes
+# ---------------------------------------------------------------------------
+
+onto:Role a owl:Class ;
+    rdfs:label "Role" ;
+    rdfs:comment "Abstract supertype for permission proxies, organisational posts, and contextual guises." .
+
+onto:AccessRole a owl:Class ;
+    rdfs:subClassOf onto:Role ;
+    rdfs:label "Access Role" ;
+    rdfs:comment "System-level permission proxy (e.g. ReadOnlyUser, Updater)." .
+
+onto:OccupationalPost a owl:Class ;
+    rdfs:subClassOf onto:Role ;
+    rdfs:label "Occupational Post" ;
+    rdfs:comment "Position held by a person in an organisation (e.g. Doctor, CaseWorker)." .
+
+onto:ActorGuise a owl:Class ;
+    rdfs:subClassOf onto:Role ;
+    rdfs:label "Actor Guise" ;
+    rdfs:comment "Context-specific guise in which an agent acts for a single interaction." .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( onto:AccessRole onto:OccupationalPost onto:ActorGuise ) .
+
+# ---------------------------------------------------------------------------
+# Object properties
+# ---------------------------------------------------------------------------
+
+onto:holdsPost a owl:ObjectProperty ;
+    rdfs:label "holds post" ;
+    rdfs:domain foaf:Person ;
+    rdfs:range onto:OccupationalPost ;
+    rdfs:comment "Links a person to an occupational post they hold in an organisation." .
+
+onto:actsInGuise a owl:ObjectProperty ;
+    rdfs:label "acts in guise" ;
+    rdfs:domain foaf:Agent ;
+    rdfs:range onto:ActorGuise ;
+    rdfs:comment "Links an agent to the contextual guise in which they are acting." .
+
+onto:hasSystemRole a owl:ObjectProperty ;
+    rdfs:label "has system role" ;
+    rdfs:domain foaf:Agent ;
+    rdfs:range onto:AccessRole ;
+    rdfs:comment "Links an agent to a system-level access role granted by the platform." .
+
+# ---------------------------------------------------------------------------
+# Example individuals
+# ---------------------------------------------------------------------------
+
+onto:DoctorPost a onto:OccupationalPost ;
+    rdfs:label "Doctor" ;
+    rdfs:comment "Example occupational post." .
+
+onto:ReadOnlyUser a onto:AccessRole ;
+    rdfs:label "Read Only User" ;
+    rdfs:comment "Example system access role." .
