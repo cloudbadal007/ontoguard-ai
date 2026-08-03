@@ -3,13 +3,13 @@
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix onto: <http://ontoarc.ai/ontology/roles#> .
+@prefix onto: <http://example.org/ontology/roles#> .
 
 # ---------------------------------------------------------------------------
 # Ontology metadata
 # ---------------------------------------------------------------------------
 
-<http://ontoarc.ai/ontology/roles> a owl:Ontology ;
+<http://example.org/ontology/roles> a owl:Ontology ;
     rdfs:label "OntoGuard Role Disambiguation" ;
     rdfs:comment "Distinguishes system access roles, occupational posts, and actor guises as disjoint subclasses of Role." ;
     owl:versionInfo "0.1.0" .

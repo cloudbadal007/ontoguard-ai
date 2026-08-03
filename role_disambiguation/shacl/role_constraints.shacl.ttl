@@ -6,7 +6,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:   <http://www.w3.org/ns/shacl#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix onto: <http://ontoarc.ai/ontology/roles#> .
+@prefix onto: <http://example.org/ontology/roles#> .
 
 # ---------------------------------------------------------------------------
 # Shape 1 — AccessRole must not overlap OccupationalPost or ActorGuise

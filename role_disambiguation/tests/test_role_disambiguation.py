@@ -13,7 +13,7 @@ SHACL = ROOT / "shacl" / "role_constraints.shacl.ttl"
 JIM = ROOT / "examples" / "jim_as_doctor.ttl"
 VIOLATION = ROOT / "examples" / "agent_as_readonly.ttl"
 
-ONTO = Namespace("http://ontoarc.ai/ontology/roles#")
+ONTO = Namespace("http://example.org/ontology/roles#")
 
 
 def _load_graph(*paths: Path) -> Graph:

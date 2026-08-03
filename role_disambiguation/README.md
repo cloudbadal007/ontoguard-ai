@@ -16,7 +16,7 @@ When these are collapsed into a single "role" field, you can no longer express t
 That loss shows up as real defects at integration boundaries — for example, granting operational authority because an account has an admin permission, or denying access because a job title was treated as a login role.
 
 This module keeps the three concepts separate in the ontology, enforces the separation with SHACL shapes, and provides passing and failing examples plus tests. It aligns with the four-layer stack: **EA Governance** → **Formal Proof** → 
-**Adapter and Enforcement (OntoArc)** → **Live Graph**.
+**Adapter and Enforcement** → **Live Graph**.
 
 ## Contents
 
